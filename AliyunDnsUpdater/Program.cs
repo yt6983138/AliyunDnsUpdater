@@ -66,7 +66,7 @@ public class Program
 			}
 			catch (Exception ex)
 			{
-				this.Log($"Error: {ex.Message}");
+				this.Log($"Error: {ex}");
 			}
 			await Task.Delay(this.Config.DaemonOn ? this.Config.Interval : default);
 		}
