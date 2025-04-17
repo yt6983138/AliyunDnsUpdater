@@ -57,7 +57,7 @@ public class Program
 				{
 					await Task.Delay(this.Config.RecordUpdateDelayMs);
 					string ip = await this.HttpClient.GetStringAsync(item.IPSource);
-					if (domainInfo.DomainRecords.Any(x => x.Value == ip))
+					if (domainInfo.DomainRecords.First(x => x.RecordId == item.RecordId).Value == ip)
 					{
 						this.Log($"No need to update {item} with {ip}");
 						continue;
