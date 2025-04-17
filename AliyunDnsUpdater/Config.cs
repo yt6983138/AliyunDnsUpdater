@@ -10,7 +10,8 @@ public class Config
 	public string AccessKeySecret { get; set; } = "";
 	public string RegionId { get; set; } = "cn-shenzhen";
 	public string Domain { get; set; } = "";
-	public List<RecordUpdateInfo> RecordsToUpdate { get; set; } = new();
+	public int RecordUpdateDelayMs { get; set; } = 1000;
+	public List<RecordUpdateInfo> RecordsToUpdate { get; set; } = [];
 
 	public static Config Load(string path)
 	{

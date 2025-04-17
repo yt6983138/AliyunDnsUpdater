@@ -8,7 +8,10 @@ using System.Text.Json;
 namespace AliyunDnsUpdater;
 public class Program
 {
-	public static Task Main(string[] args) => new Program(args).MainAsync();
+	public static Task Main(string[] args)
+	{
+		return new Program(args).MainAsync();
+	}
 
 	public IClientProfile Profile { get; }
 	public IAcsClient Client { get; }
@@ -52,6 +55,7 @@ public class Program
 				DescribeDomainRecordsResponse domainInfo = this.GetDomainInfo(this.Config.Domain, null, null);
 				foreach (RecordUpdateInfo item in this.Config.RecordsToUpdate)
 				{
+					await Task.Delay(this.Config.RecordUpdateDelayMs);
 					string ip = await this.HttpClient.GetStringAsync(item.IPSource);
 					if (domainInfo.DomainRecords.Any(x => x.Value == ip))
 					{
